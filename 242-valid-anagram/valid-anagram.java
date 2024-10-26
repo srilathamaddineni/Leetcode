@@ -7,25 +7,13 @@ class Solution {
         }
         for(int i=0;i<s.length();i++)
         {
-            if(!map.containsKey(s.charAt(i)))
-            {
-                map.put(s.charAt(i),1);
-            }
-            else
-            {
-                map.put(s.charAt(i),map.get(s.charAt(i))+1);
-            }
+            char ch=s.charAt(i);
+            map.put(ch,map.getOrDefault(ch,0)+1);
         }
         for(int i=0;i<t.length();i++)
         {
-            if(!map.containsKey(t.charAt(i)) || map.get(t.charAt(i))==0)
-            {
-                return false;
-            }
-            else
-            {
-                map.put(t.charAt(i),map.get(t.charAt(i))-1);
-            }
+            char ch=t.charAt(i);
+            map.put(ch,map.getOrDefault(ch,0)-1);
         }
         for(int i=0;i<s.length();i++)
         {
