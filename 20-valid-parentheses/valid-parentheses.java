@@ -13,45 +13,15 @@ class Solution {
                 {
                     return false;
                 }
-            if(s.charAt(i)==')')
-            {
-               
-                if(st.peek()=='(')
-                {
-                    st.pop();
-                }
-                else
-                {
+                char top=st.pop();
+              if ((s.charAt(i) == ')' && top != '(') || 
+                    (s.charAt(i) == '}' && top != '{') || 
+                    (s.charAt(i)== ']' && top != '[')) {
                     return false;
-                }
-            }
-             if(s.charAt(i)=='}')
-            {
-                if(st.peek()=='{')
-                {
-                    st.pop();
-                }
-                else
-                {
-                    return false;
-                }
-            }
-             if(s.charAt(i)==']')
-            {
-                if(st.peek()=='[')
-                {
-                    st.pop();
-                }
-                else
-                {
-                    return false;
-                }
-            }
-             
             }
         }
-        if(!st.isEmpty())
-          return false;
-        return true;
+    }
+       
+        return st.isEmpty();
     }
 }
