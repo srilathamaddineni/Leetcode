@@ -1,6 +1,6 @@
 class Solution {
     public String convert(String s, int n) {
-        char zigzag[][]=new char[n][s.length()];
+        /*char zigzag[][]=new char[n][s.length()];
         int k=0;
         int j=0;
         int pos=0;
@@ -28,7 +28,39 @@ class Solution {
                 }
             }
         }
-        return res;
+        return res;*/
+        if(n==1 || n>s.length())
+        {
+            return s;
+        }
+        List<Character> rows[]=new ArrayList[n];
+        for (int i = 0; i < n; i++) {
+              rows[i] = new ArrayList<>();
+          }
+        int idx=0;
+        int d=1;
+        for(char c:s.toCharArray())
+        {
+            rows[idx].add(c);
+            if(idx==0)
+            {
+                d=1;
+            }
+            else if(idx==n-1)
+            {
+                d=-1;
+            }
+            idx+=d;
+        }
+     StringBuilder res=new StringBuilder();
+     for(List<Character> row:rows)
+     {
+        for(char c:row)
+        {
+            res.append(c);
+        }
+     }
+     return res.toString();
         
     }
 }
