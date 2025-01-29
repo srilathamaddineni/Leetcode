@@ -10,38 +10,8 @@
  */
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        /*ListNode head=new ListNode();
-        ListNode current=head;
-        while(list1!=null && list2!=null)
+        if(list1!=null && list2!=null)
         {
-            if(list1.val<=list2.val)
-            {
-                current.next=new ListNode(list1.val);
-                 list1=list1.next;
-            }
-            else
-            {
-                current.next=new ListNode(list2.val);
-                list2=list2.next;
-            }  
-            current=current.next;
-        }
-        while(list1!=null)
-        {
-            current.next=new ListNode(list1.val);
-            list1=list1.next;
-            current=current.next;
-        }
-        while(list2!=null)
-        {
-            current.next=new ListNode(list2.val);
-            list2=list2.next;
-            current=current.next;
-        }
-      return head.next;*/
-      //Recursive Approach
-      if(list1!=null && list2!=null)
-      {
         if(list1.val<list2.val)
         {
             list1.next=mergeTwoLists(list1.next,list2);
@@ -52,11 +22,10 @@ class Solution {
             list2.next=mergeTwoLists(list1,list2.next);
             return list2;
         }
-      }
-      if(list1==null)
-       return list2;
-      return list1;
-
+        }
+        if(list1==null)
+          return list2;
+        return list1;
         
     }
 }
