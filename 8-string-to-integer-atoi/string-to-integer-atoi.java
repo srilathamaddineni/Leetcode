@@ -1,44 +1,34 @@
 class Solution {
     public int myAtoi(String s) {
-        String integer=" ";
-        int pos=0;
-        int sign=1;
+        boolean negative=false;
+        String modifiedString="";
         int n=s.length();
-        while(pos<n && s.charAt(pos)==' ')
+        int result=0;
+        int i=0;
+        while(i<n && s.charAt(i)==' ')
         {
-            pos++;
+          i++;
         }
-        if(pos>=n)
-        {
-            return 0;
+        if (i < n && (s.charAt(i) == '-' || s.charAt(i) == '+')) {
+            negative = (s.charAt(i) == '-');
+            i++;
         }
-        if(s.charAt(pos)=='-' )
+        while(i<n && (int)s.charAt(i)-'0'>=0 && (int)s.charAt(i)-'0'<=9 )
         {
-           sign=-1;
-        }
-         if(s.charAt(pos)=='-' || s.charAt(pos)=='+' )
-        {
-           pos++;
-        }
-        if(pos>=n)
-          return 0;
-        int num=0;
-        while(pos<n && s.charAt(pos)>='0' && s.charAt(pos)<='9')
-        {
-            int x=s.charAt(pos)-'0';
-            if (num>Integer.MAX_VALUE/10 || (num==Integer.MAX_VALUE/10 && x>Integer.MAX_VALUE%10)) {
-                if (sign==1) {
-                    return Integer.MAX_VALUE;
-                }
-                else {
-                    return Integer.MIN_VALUE;
-                }
+            
+            if(result>Integer.MAX_VALUE/10 || (result==Integer.MAX_VALUE/10 && (int)(s.charAt(i)-'0')>Integer.MAX_VALUE%10))
+            {
+                return negative?Integer.MIN_VALUE:Integer.MAX_VALUE;
             }
-            num=num*10+x;
-            pos++;
+            result*=10;
+            result+=((int)s.charAt(i)-'0');
+            i++;
         }
         
-        return num*sign;
+        return negative?-result:result;
+
+
+        
         
     }
 }
