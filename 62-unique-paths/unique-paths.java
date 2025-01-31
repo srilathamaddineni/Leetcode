@@ -16,7 +16,7 @@ class Solution {
              Arrays.fill(dp[i], -1);
             }
           return uniquePathSum(m-1, n-1, dp);*/
-          //optimizing further for space optimization
+          /*optimizing further for space optimization
           int dp[][]=new int[m][n];
           for(int i=0;i<m;i++)
             {
@@ -33,8 +33,27 @@ class Solution {
                     }
                 }
             }
-            return dp[m-1][n-1];
-          
+            return dp[m-1][n-1];*/
+            //Optimizing Further for the space
+            int prev[]=new int[n];
+            for(int i=0;i<m;i++)
+            {
+                int curr[]=new int[n];
+                for(int j=0;j<n;j++)
+                {
+                    if(i==0 && j==0)
+                       curr[j]=1;
+                    else
+                    {
+                        int up=(i>0)?prev[j]:0;
+                        int left=(j>0)?curr[j-1]:0;
+                        curr[j]=up+left;
+                    }
+                }
+                prev=curr;
+            }
+
+          return prev[n-1];
         
     }
 }
