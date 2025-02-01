@@ -10,13 +10,13 @@ class Solution {
             return;
         }
         
-        for(int i=0;i<n;i++)
+       /*for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
             {
                 arr[i][j]=board[i][j];
             }
-        }
+        }*/
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
@@ -27,26 +27,40 @@ class Solution {
                 {
                     ni=i+dx[k];
                     nj=j+dy[k];
-                    if(ni>=0 && ni<n && nj>=0 && nj<m && arr[ni][nj]==1)
+                    if(ni>=0 && ni<n && nj>=0 && nj<m && (board[ni][nj]==1 || board[ni][nj]==-1))
                     {
                         cnt++;
                     }
                 }
-                if(arr[i][j]==1)
+                if(board[i][j]==1)
                 {
                     if(cnt<2  || cnt>3  )
                     {
-                        board[i][j]=0;
+                        board[i][j]=-1;
                     }
                 }
                 else
                 {
                     if(cnt==3)
                     {
-                        board[i][j]=1;
+                        board[i][j]=-2;
                     }
                 }
                 
+            }
+        }
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(board[i][j]==-1)
+                {
+                    board[i][j]=0;
+                }
+                if(board[i][j]==-2)
+                {
+                    board[i][j]=1;
+                }
             }
         }
     }
