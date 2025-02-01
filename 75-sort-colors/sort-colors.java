@@ -10,22 +10,21 @@ class Solution {
         {
             cntArray[nums[i]]++;
         }
-        for(int i=1;i<=max;i++)
-        {
-            cntArray[i]+=cntArray[i-1];
-        }
-
-        int modifiedArray[]=new int[nums.length];
-        for(int i=nums.length-1;i>=0;i--)
-        {
-            modifiedArray[cntArray[nums[i]]-1]=nums[i];
-            cntArray[nums[i]]--;
-        }
-         for(int i=nums.length-1;i>=0;i--)
-        {
-            nums[i]=modifiedArray[i];
-            
-        }
+       int k=0;
+       int l=0;
+       while(k<=max)
+       {
+          if(cntArray[k]>0)
+          {
+             nums[l++]=k;
+             cntArray[k]--;
+          }
+          else
+          {
+            k++;
+          }
+          
+       }
 
     }
 }
