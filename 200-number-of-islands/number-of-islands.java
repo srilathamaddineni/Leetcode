@@ -25,8 +25,7 @@ class Solution {
               q.remove();
               for(int i=0;i<4;i++)
               {
-                   for(int j=0;j<4;j++)
-                   {   
+                   
                        int nrow=row1+dx[i];
                        int ncol=col1+dy[i];
                        if(nrow>=0 && nrow<m && ncol>=0 && ncol<n && grid[nrow][ncol]=='1' && vis[nrow][ncol]==0)
@@ -34,7 +33,6 @@ class Solution {
                           vis[nrow][ncol]=1;
                           q.add(new Pair(nrow,ncol));
                        }
-                   }
               }
           }
     }
