@@ -1,22 +1,21 @@
 class Solution {
-    public void findAllUniqueSubsets(int[] nums,int curr,List<Integer> li,Set<List<Integer>> result)
-    {
-        if(curr==nums.length)
+    public void findAllUniqueSubsets(int[] nums,int curr,List<Integer> li,List<List<Integer>> result)
+    {//Using Set to store unique values gonna take extra time as we take extra time to convert set to list and adding to list Inserting into Set: O(2^n * n) ,Conversion from Set to List: O(2^n * n)
+         result.add(new ArrayList<>(li));
+        for(int i=curr;i<nums.length;i++)
         {
-            result.add(new ArrayList<>(li));
-            return;
+            if(i>curr && nums[i]==nums[i-1])continue;
+              li.add(nums[i]);
+              findAllUniqueSubsets(nums,i+1,li,result);
+              li.remove(li.size()-1);
+              
         }
-        li.add(nums[curr]);
-        findAllUniqueSubsets(nums,curr+1,li,result);
-        li.remove(li.size()-1);
-        findAllUniqueSubsets(nums,curr+1,li,result);
-
     }
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-        Set<List<Integer>> result=new HashSet<List<Integer>>();
+        List<List<Integer>> result=new ArrayList<List<Integer>>();
         Arrays.sort(nums);
         findAllUniqueSubsets(nums,0,new ArrayList<>(),result);
-        return new ArrayList<>(result);
+        return result;
 
     }
 }
