@@ -1,16 +1,24 @@
 class Solution {
-    public void backtrack(int start,int[] arr,int remain, List<List<Integer>> result,List<Integer> comb)
+    public void findComb(int start,int[] arr,int remain, List<List<Integer>> result,List<Integer> comb)
     {
-       if(remain<0)
-         return;
-       else if(remain==0)
+      if(start==arr.length)
+      {
+         if(remain==0)
+         {
           result.add(new ArrayList<>(comb));
-        for(int i=start;i<arr.length;i++)
-        {
-            comb.add(arr[i]);
-            backtrack(i,arr,remain-arr[i],result,comb);
-            comb.remove(comb.size()-1);
-        }
+         }
+         return;
+         
+      }
+      if(arr[start]<=remain)
+      {
+         comb.add(arr[start]);
+         findComb(start,arr,remain-arr[start],result,comb);
+         comb.remove(comb.size()-1);
+
+      }
+       findComb(start+1,arr,remain,result,comb);
+        
         
         
     }
@@ -18,7 +26,7 @@ class Solution {
         List<List<Integer>> ans=new ArrayList<>();
         List<Integer> comb=new ArrayList<>();
         //Arrays.sort(candidates);
-        backtrack(0,candidates,target,ans,comb);
+        findComb(0,candidates,target,ans,comb);
         return ans;
     }
 }
