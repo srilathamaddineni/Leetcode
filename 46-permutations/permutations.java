@@ -5,21 +5,20 @@ class Solution {
         return res;
 
     }
-    public void backtrack(List<List<Integer>> res, List<Integer> li,int[] nums)
+    public void backtrack(List<List<Integer>> res,List<Integer> permutation,int[] arr)
     {
-        if(li.size()==nums.length)
+        if(permutation.size()==arr.length)
         {
-            res.add(new ArrayList<>(li));
+            res.add(new ArrayList<>(permutation));
+            return;
         }
-        else
+        for(int i=0;i<arr.length;i++)
         {
-               for(int i=0;i<nums.length;i++)
-               {
-                if(li.contains(nums[i]))continue;
-                li.add(nums[i]);
-                backtrack(res,li,nums);
-                li.remove(li.size()-1);
-               }
+            if(permutation.contains(arr[i]))continue;
+            permutation.add(arr[i]);
+            backtrack(res,permutation,arr);
+             permutation.remove(permutation.size()-1);
+
         }
     }
 }
