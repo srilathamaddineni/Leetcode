@@ -23,41 +23,32 @@ class Solution {
         // }
         // return sum;
         //Optimized Version
-        if(k==0)
-        {
-            return 0;
+       if(k == 0) {
+    return 0;
+}
+
+PriorityQueue<Integer> minHeap = new PriorityQueue<>(k);
+
+for (int i = 0; i < grid.length; i++) {
+    // Instead of using a max-heap, sort the row and take the top `limits[i]` elements
+    Arrays.sort(grid[i]);
+
+    // Add the largest `limits[i]` elements to the minHeap
+    int cnt = Math.min(limits[i], grid[i].length);
+    for (int j = grid[i].length - 1; j >= grid[i].length - cnt; j--) {
+        if (minHeap.size() < k) {
+            minHeap.add(grid[i][j]);
+        } else if (grid[i][j] > minHeap.peek()) {
+            minHeap.poll();
+            minHeap.add(grid[i][j]);
         }
-        PriorityQueue<Integer> minHeap=new PriorityQueue<>();
-        for(int i=0;i<grid.length;i++)
-        {
-            PriorityQueue<Integer> rowMaxHeap=new PriorityQueue<>(Collections.reverseOrder());
-            for(int j=0;j<grid[i].length;j++)
-            {
-                rowMaxHeap.add(grid[i][j]);
-            }
-            int cnt=Math.min(limits[i],grid[i].length);
-            for(int p=0;p<cnt;p++)
-            {
-                if(rowMaxHeap.size()==0)
-                  break;
-                int val=rowMaxHeap.poll();
-                if(minHeap.size()<k)
-                {
-                    minHeap.add(val);
-                }
-                else if(val>minHeap.peek())
-                   {
-                      minHeap.poll();
-                      minHeap.add(val);
-                   }
-                
-            }
-        }
-        long sum=0;
-        while(!minHeap.isEmpty())
-        {
-            sum+=minHeap.poll();
-        }
-        return sum;
+    }
+}
+
+long sum = 0;
+while (!minHeap.isEmpty()) {
+    sum += minHeap.poll();
+}
+return sum;
     }
 }
