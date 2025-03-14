@@ -5,20 +5,17 @@ class Solution {
         int j=0;
         for(int i=0;i<nums.length;i++)
         {
-            if(nums[i]==val)
-            {
-                n--;
-            }
-            else
+            if(nums[i]!=val)
             {
                 li.add(nums[i]);
             }
+           
         }
         for(int i=0;i<li.size();i++)
         {
             nums[i]=li.get(i);
         }
         System.out.println(n);
-        return n;
+        return li.size();
     }
 }
