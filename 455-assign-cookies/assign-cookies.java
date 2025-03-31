@@ -4,13 +4,11 @@ class Solution {
         Arrays.sort(s);
         int l=0;
         int r=0;
-        int cnt=0;
        while(l<g.length && r<s.length)
        {
           if(s[r]>=g[l])
           {
-            l++;
-            cnt++;
+            l++;  
           }
           r++;
        }
