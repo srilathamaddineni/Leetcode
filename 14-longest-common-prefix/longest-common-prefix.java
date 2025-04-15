@@ -2,7 +2,7 @@ class Solution {
     public String longestCommonPrefix(String[] strs) {
         if(strs==null || strs.length==0)
         {
-            return " ";
+            return "";
         }
         String longCommonPrefix=strs[0];
        // Arrays.sort(strs,(a,b)->Integer.compare(a.length(), b.length()));//nlogn
@@ -10,7 +10,7 @@ class Solution {
         {
             for(int j=1;j<strs.length;j++)
             {
-                if(i>strs[j].length()-1 || strs[0].charAt(i)!=strs[j].charAt(i))
+                if(i>=strs[j].length() || strs[0].charAt(i)!=strs[j].charAt(i))
                 {
                    return longCommonPrefix.substring(0,i);
                 }
