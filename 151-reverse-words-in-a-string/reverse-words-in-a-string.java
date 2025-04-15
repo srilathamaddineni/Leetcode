@@ -12,8 +12,6 @@ class Solution {
       {
         end--;
       } 
-      System.out.println(start);
-      System.out.println(end);
       for(int i=end;i>=start;i--)
       {
         String word="";
@@ -25,7 +23,6 @@ class Solution {
                 break;
             }
              i--; 
-             //System.out.print(s.charAt(i));
          }
         if(i!=start)
         {
