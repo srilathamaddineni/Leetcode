@@ -1,8 +1,12 @@
 class Solution {
     public String reverseWords(String s) {
+      if(s==null || s.isEmpty())
+      {
+        return s;
+      }
       int start=0;
       int end=s.length()-1;
-      StringBuilder reversedStr=new StringBuilder("");
+      StringBuilder reversedStr=new StringBuilder();
 
       while(s.charAt(start)==' ')
       {
@@ -12,24 +16,19 @@ class Solution {
       {
         end--;
       } 
-      for(int i=end;i>=start;i--)
+     while(end>=start)
       {
         String word="";
-         while(s.charAt(i)!=' ' && i>=start)
+         while(end>=start && s.charAt(end)!=' ')
          {
-            word=s.charAt(i)+word;
-            if(i==start)
-            {
-                break;
-            }
-             i--; 
+            word=s.charAt(end)+word;
+            end--; 
          }
-        if(i!=start)
-        {
-          if(s.charAt(i+1)!=' ')
-          word=word+" ";
-        }
+        if (reversedStr.length() > 0 && s.charAt(end+1)!=' ') {
+                reversedStr.append(" ");
+            }
          reversedStr.append(word);
+         end--;
       }   
      return reversedStr.toString();
     }
