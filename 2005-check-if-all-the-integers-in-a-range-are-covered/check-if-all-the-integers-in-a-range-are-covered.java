@@ -1,21 +1,18 @@
 class Solution {
     public boolean isCovered(int[][] ranges, int left, int right) {
-        int result[]=new int[51];
-        for(int[] range:ranges)
-        {
-            int m=range[0];
-            int n=range[1];
-            for(int j=m;j<=n;j++)
-            {
-                 result[j]++;
-            }
-        }
+        boolean flag=false;
         for(int i=left;i<=right;i++)
         {
-            if(result[i]==0)
+            for(int[] range:ranges)
             {
-                return false;
+                if(i>=range[0] && i<=range[1])
+                {
+                    flag=true;
+                    break;
+                }
             }
+            if(!flag)return false;
+            flag=false;
         }
         return true;
     }
