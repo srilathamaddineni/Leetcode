@@ -7,7 +7,7 @@ class Solution {
         int minOperations=Integer.MAX_VALUE;
         for(int i=0;i<k;i++)
         {
-            if(winSub.charAt(i)=='W')
+            if(blocks.charAt(i)=='W')
             {
                 noOfWhites++;
             }    
@@ -15,21 +15,12 @@ class Solution {
         minOperations=Math.min(minOperations,noOfWhites);
         for(int i=k;i<blocks.length();i++)
         {
-            winSub=winSub+blocks.charAt(i);
-             if(winSub.charAt(winStart)=='W' && blocks.charAt(i)=='B')
-             {
-                noOfWhites--;
-
-             }
-             if(winSub.charAt(winStart)=='B' && blocks.charAt(i)=='W')
-             {
-                noOfWhites++;
-             }
+            if (blocks.charAt(i - k) == 'W') noOfWhites--; // outgoing
+            if (blocks.charAt(i) == 'W') noOfWhites++; 
              minOperations=Math.min(minOperations,noOfWhites);
-             winStart++;
              
         }
-        return minOperations>0?minOperations:0;
+        return minOperations;
        
     }
 }
