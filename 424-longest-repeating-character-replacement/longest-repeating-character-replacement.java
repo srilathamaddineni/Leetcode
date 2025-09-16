@@ -20,8 +20,18 @@ class Solution {
                     // Update the maximum length found so far
                     maxLength = Math.max(maxLength, currentLength);
                 }
+                else
+                {
+                    break;
+                }
             }
         }
         return maxLength;
+        // int n=s.length();
+        // int l=0;
+        // for(int r=0;r<s.length();r++)
+        // {
+            
+        // }
     }
 }
