@@ -37,13 +37,12 @@ class Solution {
             freq[s.charAt(r)-'A']++;
             maxFreq=Math.max(maxFreq,freq[s.charAt(r)-'A']);
             int currLength=r-l+1;
-            while(currLength-maxFreq>k)
+            if(currLength-maxFreq>k)
             {
                 freq[s.charAt(l)-'A']--;
                 maxFreq=Math.max(freq[s.charAt(l)-'A'],maxFreq);
                 l++;
                 maxLength=Math.max(maxLength,r-l+1);
-                currLength=r-l+1;
             }
             maxLength=Math.max(maxLength,r-l+1);
             
