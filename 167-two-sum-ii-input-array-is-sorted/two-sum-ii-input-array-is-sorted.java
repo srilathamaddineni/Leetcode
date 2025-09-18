@@ -10,9 +10,7 @@ class Solution {
           int sum=numbers[l]+numbers[r];
           if(sum==target)
           {
-            arr[0]=l+1;
-            arr[1]=r+1;
-             break;
+            return new int[]{l+1,r+1};
           }
           else if(sum<target)
           {
@@ -23,6 +21,6 @@ class Solution {
             r--;
           }
        }
-        return arr;
+        return new int[]{};
     }
 }
