@@ -1,30 +1,23 @@
 class Solution {
     public void sortColors(int[] nums) {
-        int max=Integer.MIN_VALUE;
+        int count[]=new int[3];
         for(int i=0;i<nums.length;i++)
         {
-            max=Math.max(max,nums[i]);
+            count[nums[i]]++;
         }
-        int cntArray[]=new int[max+1];
-        for(int i=0;i<nums.length;i++)
+        for(int i=1;i<3;i++)
         {
-            cntArray[nums[i]]++;
+            count[i]+=count[i-1];
         }
-       int k=0;
-       int l=0;
-       while(k<=max)
-       {
-          if(cntArray[k]>0)
-          {
-             nums[l++]=k;
-             cntArray[k]--;
-          }
-          else
-          {
-            k++;
-          }
-          
-       }
-
+        int n=nums.length;
+        int[] ans = new int[n];
+        for (int i = n - 1; i >= 0; i--) {
+            ans[count[nums[i]] - 1] = nums[i];
+            count[nums[i]]--;
+        }
+        for(int i=0;i<n;i++)
+        {
+            nums[i]=ans[i];
+        }
     }
 }
