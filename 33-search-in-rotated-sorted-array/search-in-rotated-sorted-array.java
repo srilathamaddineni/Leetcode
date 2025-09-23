@@ -1,42 +1,30 @@
 class Solution {
-    public int search(int[] nums, int target) {
-        /*Brute Force
-        int idx=-1;
-        for(int i=0;i<nums.length;i++)
-        {
-            if(nums[i]==target)
-            {
-                idx=i;
-                break;
-            }
-        }
-        return idx;*/
-        //Optimized Solution using Binary Search
-        int n=nums.length,low=0,high=n-1;
-        int idx=-1;
+    public int search(int[] arr, int target) {
+        int low=0;
+        int high=arr.length-1;
         while(low<=high)
         {
             int mid=low+(high-low)/2;
-            if(nums[mid]==target)
+            if(arr[mid]==target)
             {
                 return mid;
             }
-            else if(nums[mid]>=nums[low])
+            if(arr[low]<=arr[mid])
             {
-                if(nums[low]<=target && target<=nums[mid])
+                if(arr[low]<=target && target<=arr[mid])
                 {
-                    high=mid-1;
+                   high=mid-1;
                 }
                 else
                 {
-                     low=mid+1;
+                low=mid+1;
                 }
             }
             else
             {
-                if(nums[mid]<=target && target<=nums[high])
+                if(arr[mid]<=target && arr[high]>=target)
                 {
-                   low=mid+1;
+                    low=mid+1;
                 }
                 else
                 {
@@ -44,6 +32,6 @@ class Solution {
                 }
             }
         }
-        return idx;
+        return -1;
     }
 }
