@@ -1,11 +1,9 @@
 class Solution {
     public int smallestDivisor(int[] nums, int threshold) {
-        int min=Integer.MAX_VALUE;
         int max=Integer.MIN_VALUE;
         int divisor=Integer.MAX_VALUE;
         for(int i=0;i<nums.length;i++)
         {
-            min=Math.min(min,nums[i]);
             max=Math.max(max,nums[i]);
         }
         int low=1;
@@ -13,7 +11,7 @@ class Solution {
         while(low<=high)
         {
             int mid=low+(high-low)/2;
-            if(sumOfDivisors(nums,mid)<=threshold)
+            if(sumOfDivisors(nums,mid,threshold)<=threshold)
             {
                 divisor=mid;
                 high=mid-1;
@@ -28,12 +26,13 @@ class Solution {
         return divisor;
 
     }
-    public int sumOfDivisors(int arr[],int divisor)
+    public int sumOfDivisors(int arr[],int divisor,int threshold)
     {
         int sum=0;
         for(int i=0;i<arr.length;i++)
         {
-            sum+=(int)Math.ceil((double)arr[i]/divisor);
+            sum += (arr[i] + divisor - 1) / divisor;
+            if(sum>threshold)return sum;
         }
         return sum;
     }
