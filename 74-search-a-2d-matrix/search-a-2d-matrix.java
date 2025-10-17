@@ -3,36 +3,19 @@ class Solution {
         int m=matrix.length;
         int n=matrix[0].length;
         int low=0;
-        int high=m-1;
+        int high=m*n-1;
         while(low<=high)
         {
             int mid=low+(high-low)/2;
-            int low1=0;
-            int high1=n-1;
-            int mid1=low1+(high1-low1)/2;
-            while(low1<=high1)
-            {
-                mid1=low1+(high1-low1)/2;
-                if(matrix[mid][mid1]==target)
-                {
-                    return true;
-                }
-                else if(matrix[mid][mid1]<target)
-                {
-                    low1=mid1+1;
-                }
-                else
-                {
-                    high1=mid1-1;
-                }
-            }
-            if(matrix[mid][mid1]==target)
+            int row=mid/n;
+            int col=mid%n;
+            if(matrix[row][col]==target)
             {
                 return true;
             }
-            else if(matrix[mid][mid1]<target)
+            else if(matrix[row][col]<target)
             {
-                   low=mid+1;
+                low=mid+1;
             }
             else
             {
