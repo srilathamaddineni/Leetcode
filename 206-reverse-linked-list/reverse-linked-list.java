@@ -16,14 +16,16 @@ class Solution {
           {
             return head;
           }
-          while(curr.next!=null)
+          while(curr!=null)
           {
              temp=curr.next;
              curr.next=prev;
              prev=curr;
              curr=temp;
           }
-          curr.next=prev;
-          return curr;
+          
+          return prev;
+        // Recursive
+
     }
 }
