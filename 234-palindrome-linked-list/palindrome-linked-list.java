@@ -14,42 +14,42 @@ class Solution {
         {
             return true;
         }
-        ListNode slow=head;
         ListNode fast=head;
+        ListNode slow=head;
         while(fast!=null && fast.next!=null)
         {
-            slow=slow.next;
-            fast=fast.next.next;
+               fast=fast.next.next;
+               slow=slow.next;
         }
-        ListNode reversedSecondHalf=reverse(slow);
-        ListNode firstHalfPointer=head;
-        ListNode secondHalfPointer=reversedSecondHalf;
-        while(secondHalfPointer!=null)
+        if(fast!=null)slow=slow.next;
+        ListNode p1=head;
+        ListNode p2=reverseLinkedList(slow);
+        while(p1!=null && p2!=null)
         {
-            if(firstHalfPointer.val!=secondHalfPointer.val)
+            if(p1.val!=p2.val)
             {
                 return false;
             }
-            firstHalfPointer=firstHalfPointer.next;
-            secondHalfPointer=secondHalfPointer.next;
+            p1=p1.next;
+            p2=p2.next;
         }
+        
         return true;
     }
-    public ListNode reverse(ListNode head)
+    public ListNode reverseLinkedList(ListNode head)
     {
         ListNode curr=head;
-        ListNode prev=null;
-        ListNode nxt=new ListNode();
-        if(head==null)
+        ListNode prev=null, nxt=null;
+        if(head==null || head.next==null)
         {
-            return null;
+            return head;
         }
         while(curr!=null)
         {
-           nxt=curr.next;
-           curr.next=prev;
-           prev=curr;
-           curr=nxt;
+            nxt=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=nxt;
         }
         return prev;
     }
