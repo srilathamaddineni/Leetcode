@@ -29,38 +29,54 @@ public class Solution {
         //     temp2=temp2.next;
         // }
         // return null;
+        /*********************************************************************** */
+        //Better Approach
+        // ListNode temp1=headA;
+        // ListNode temp2=headB;
+        // int cnt1=0, cnt2=0;
+        // while(temp1!=null)
+        // {
+        //     cnt1++;
+        //     temp1=temp1.next;
+        // }
+        // while(temp2!=null)
+        // {
+        //     cnt2++;
+        //     temp2=temp2.next;
+        // }
+        // temp1=headA;
+        // temp2=headB;
+        // if(cnt1>cnt2)
+        // {
+        //     while(cnt1>cnt2 && temp1!=null)
+        //     {
+        //         temp1=temp1.next;
+        //         cnt1--;
+        //     }
+        // }
+        // else
+        // {
+        //     while(cnt2>cnt1 && temp2!=null)
+        //     {
+        //         temp2=temp2.next;
+        //         cnt2--;
+        //     }
+        // }
+        // while(temp1!=null && temp2!=null)
+        // {
+        //     if(temp1==temp2)
+        //     {
+        //         return temp1;
+        //     }
+        //     temp1=temp1.next;
+        //     temp2=temp2.next;
+        // }
+        // return null;
+        /*********************************************************************** */
+        //Best Approach
         ListNode temp1=headA;
         ListNode temp2=headB;
-        int cnt1=0, cnt2=0;
-        while(temp1!=null)
-        {
-            cnt1++;
-            temp1=temp1.next;
-        }
-        while(temp2!=null)
-        {
-            cnt2++;
-            temp2=temp2.next;
-        }
-        temp1=headA;
-        temp2=headB;
-        if(cnt1>cnt2)
-        {
-            while(cnt1>cnt2 && temp1!=null)
-            {
-                temp1=temp1.next;
-                cnt1--;
-            }
-        }
-        else
-        {
-            while(cnt2>cnt1 && temp2!=null)
-            {
-                temp2=temp2.next;
-                cnt2--;
-            }
-        }
-        while(temp1!=null && temp2!=null)
+        while(temp1.next!=null || temp2.next!=null)
         {
             if(temp1==temp2)
             {
@@ -68,6 +84,13 @@ public class Solution {
             }
             temp1=temp1.next;
             temp2=temp2.next;
+            if(temp1==null)temp1=headB;
+            if(temp2==null)temp2=headA;
+
+        }
+        if(temp1==temp2)
+        {
+            return temp1;
         }
         return null;
     }
