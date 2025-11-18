@@ -1,37 +1,26 @@
 class Solution {
     public boolean isValid(String s) {
         Stack<Character> st=new Stack<>();
-        for(int i=0;i<s.length();i++)
+        Map<Character, Character> pairs=Map.of(
+            ')','(',
+            ']','[',
+            '}','{'
+        );
+        for(char ch:s.toCharArray())
         {
-            char ch=s.charAt(i);
-            if(ch=='(' || ch=='{' || ch=='[')
+            if(pairs.containsValue(ch))
             {
                 st.push(ch);
+                continue;
             }
-            else
+            if(pairs.containsKey(ch))
             {
-                if(st.isEmpty())
+                if(st.isEmpty() || pairs.get(ch)!=st.pop())
                 {
                     return false;
                 }
-                else
-                {
-                    if((ch==')' && st.peek()=='(') || ch=='}' && st.peek()=='{' || ch==']' && st.peek()=='[') 
-                    {
-                        st.pop();
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-
             }
         }
-        if(!st.isEmpty())
-        {
-            return false;
-        }
-        return true;
+        return st.isEmpty();
     }
 }
