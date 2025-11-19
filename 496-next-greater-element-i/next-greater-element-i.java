@@ -3,32 +3,25 @@ class Solution {
         int n1=nums1.length;
         int n2=nums2.length;
         int result[]=new int[n1];
-        for(int i=0;i<n1;i++)
+        Stack<Integer> st=new Stack<>();
+        Map<Integer,Integer> nextGreater=new HashMap<>();
+        for(int num:nums2)
         {
-            for(int j=0;j<n2;j++)
+            while(!st.isEmpty() && num>st.peek())
             {
-                if(nums1[i]==nums2[j])
-                {
-                   result[i]=-1;
-                   if(j==n2-1)
-                   {
-                    break;
-                   }
-                   else
-                   {
-                      for(int k=j+1;k<n2;k++)
-                      {
-                        if(nums2[k]>nums2[j])
-                        {
-                            result[i]=nums2[k];
-                            break;
-                        }
-                      }
-                   }
-                   break;
-                }
+                    nextGreater.put(st.pop(),num);
             }
+            st.push(num);
+        }
+        while(!st.isEmpty())
+        {
+            nextGreater.put(st.pop(),-1);
+        }
+        for(int i=0;i<nums1.length;i++) 
+        {
+            result[i]=nextGreater.get(nums1[i]);
         }
         return result;
+        
     }
 }
