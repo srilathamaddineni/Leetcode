@@ -1,26 +1,49 @@
+class Node{
+    int data;
+    int min;
+    Node(int data,int min)
+    {
+        this.data=data;
+        this.min=min;
+    }
+}
+
+
+
 class MinStack {
-    private List<int[]>st;
+      Stack<Node> st;
+      int minValue;
     public MinStack() {
-        st=new ArrayList<>();
+        st=new Stack<>();
+        minValue=Integer.MAX_VALUE;
     }
     
     public void push(int val) {
-        int top[]=st.isEmpty()?new int[]{val,val}:st.get(st.size()-1);
-        int min_val=top[1];
-        min_val=Math.min(val,min_val);
-        st.add(new int[]{val,min_val});
+        if(val<minValue)
+        {
+            minValue=val;
+        }
+        st.push(new Node(val,minValue));
     }
     
     public void pop() {
-        st.remove(st.size()-1);
+       Node result = st.pop();
+        if (!st.isEmpty()) {
+            minValue = st.peek().min;
+        } else {
+            minValue = Integer.MAX_VALUE;
+        }
+       
     }
     
     public int top() {
-        return st.isEmpty()?-1:st.get(st.size()-1)[0];
+        Node result=st.peek();
+        return result.data;
     }
     
     public int getMin() {
-        return st.isEmpty()?-1:st.get(st.size()-1)[1];
+        Node result=st.peek();
+        return result.min;
     }
 }
 
