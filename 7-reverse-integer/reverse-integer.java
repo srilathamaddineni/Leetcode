@@ -1,24 +1,20 @@
 class Solution {
     public int reverse(int x) {
-      int flag=1;
-       if(x<0)
-       {
-          flag=-1;
-          x=-x;
-       }
-       int reversed=0;
-       while(x>0)
-       {
-          int rem=x%10;
-          x=x/10;
-             
-          if(reversed>(Integer.MAX_VALUE-rem)/10)
+        int sign=0;
+        int answer=0;
+        if(x<0)
         {
-            return 0;
+            sign=1;
+            x=Math.abs(x);
         }
-        reversed=reversed*10+rem;
-       }
-       
-       return flag*reversed;
+        while(x>0)
+        {
+            int ld=x%10;
+            if(answer>(Integer.MAX_VALUE-ld)/10)
+              return 0;
+            answer=answer*10+(x%10);
+            x=x/10;
+        }
+        return sign==1?(-answer):answer;
     }
 }
