@@ -14,10 +14,6 @@ class Solution {
             }
             }
             set.add(s.charAt(i));
-            if(set.size()>maxLength)
-            {
-                System.out.println(s.substring(start,i));
-            }
             maxLength=Math.max(maxLength, set.size());
 
          }
