@@ -10,7 +10,6 @@ class Solution {
            }
         }
 
-        System.out.println(cnt);
         double value=cnt/n;
 
         return (int)(value*100);
