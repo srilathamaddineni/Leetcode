@@ -22,13 +22,12 @@ class Solution {
                 return head.next;
             }
         }
-        while(fast!=null)
+        while(fast.next!=null)
         {
-            prev=slow;
             slow=slow.next;
             fast=fast.next;
         }
-        prev.next=slow.next;
+        slow.next=slow.next.next;
         return head;
     }
 }
