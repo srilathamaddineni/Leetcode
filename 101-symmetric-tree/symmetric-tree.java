@@ -16,19 +16,37 @@
 class Solution {
     public boolean isSymmetric(TreeNode root) {
      
-      return  symmetrical(root.left,root.right);
-
-    }
-    public boolean symmetrical(TreeNode n1,TreeNode n2)
-    {
-        if(n1==null && n2==null)
-        {
-            return true;
+      Queue<TreeNode> queue=new LinkedList<>();
+      queue.add(root.left);
+      queue.add(root.right);
+      while(!queue.isEmpty())
+      {
+        TreeNode n1=queue.poll();
+        TreeNode n2=queue.poll();
+        if(n1==null && n2==null){
+            continue;
         }
-        if(n1==null || n2==null)
+        if(n1==null || n2==null || n1.val!=n2.val)
         {
             return false;
         }
-        return n1.val==n2.val && symmetrical(n1.left,n2.right) && symmetrical(n1.right,n2.left);
+        queue.add(n1.left);
+        queue.add(n2.right);
+        queue.add(n1.right);
+        queue.add(n2.left);
+      }
+     return true;
     }
+    // public boolean symmetrical(TreeNode n1,TreeNode n2)
+    // {
+    //     if(n1==null && n2==null)
+    //     {
+    //         return true;
+    //     }
+    //     if(n1==null || n2==null)
+    //     {
+    //         return false;
+    //     }
+    //     return n1.val==n2.val && symmetrical(n1.left,n2.right) && symmetrical(n1.right,n2.left);
+    // }
 }
