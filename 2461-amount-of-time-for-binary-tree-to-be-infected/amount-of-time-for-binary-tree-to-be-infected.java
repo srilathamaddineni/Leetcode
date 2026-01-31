@@ -19,22 +19,23 @@ class Solution {
         builtParent(root,null,parent);
         Set<TreeNode> visited=new HashSet<>();
         Queue<TreeNode> queue=new LinkedList<>();
-        int timeTakentoBurn=-1;
+        int timeTakentoBurn=0;
         TreeNode startNode=findStartNode(root,start);
         visited.add(startNode);
         queue.add(startNode);
         while(!queue.isEmpty())
         {
             int size=queue.size();
+            boolean spread=false;
             for(int i=0;i<size;i++)
             {
                 TreeNode current=queue.poll();
-                if(current.left!=null && visited.add(current.left))queue.add(current.left);
-                if(current.right!=null && visited.add(current.right))queue.add(current.right);
+                if(current.left!=null && visited.add(current.left)){spread=true;queue.add(current.left);}
+                if(current.right!=null && visited.add(current.right)){spread=true;queue.add(current.right);}
                 TreeNode parentNode=parent.get(current);
-                if(parentNode!=null && visited.add(parentNode))queue.add(parentNode);
+                if(parentNode!=null && visited.add(parentNode)){spread=true;queue.add(parentNode);}
             }
-           timeTakentoBurn++; 
+           if(spread)timeTakentoBurn++; 
 
         }
         return timeTakentoBurn;
