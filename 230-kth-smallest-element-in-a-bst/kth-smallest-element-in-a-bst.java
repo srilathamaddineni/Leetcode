@@ -18,7 +18,7 @@ class Solution {
     public int kthSmallest(TreeNode root, int k) {
         List<Integer> result=new ArrayList<>();
         storeElements(root,result);
-        Collections.sort(result);
+       // Collections.sort(result);
         return result.get(k-1);
     }
     public List<Integer> storeElements(TreeNode root,List<Integer> result)
